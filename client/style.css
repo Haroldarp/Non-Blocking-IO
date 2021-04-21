@@ -1,0 +1,12 @@
+img{
+    height: 100%;
+    width: 100%;
+}
+
+.div-container{
+    border-color: black;
+    border-style: solid;
+    border-width: thin;
+    height: 100px;
+    width: 100px;
+}
