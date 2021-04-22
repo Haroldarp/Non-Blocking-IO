@@ -12,7 +12,7 @@ import java.util.concurrent.CompletableFuture;
 public class ImageService {
 
     @Async
-    public CompletableFuture<byte[]> getImageAsycn(String imageName) throws IOException {
+    public CompletableFuture<byte[]> getImageAsync(String imageName) throws IOException {
         var imgFile = new ClassPathResource("images/"+imageName+".jpg");
         byte[] bytes = StreamUtils.copyToByteArray(imgFile.getInputStream());
         return CompletableFuture.completedFuture(bytes);

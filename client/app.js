@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:8080/';
+const baseUrl = 'http://localhost:8080/images/async/';
 
 function requestImagePromise(method, url){
     return new Promise(function (resolve, reject) {
@@ -43,7 +43,7 @@ async function blockingRequest(){
 
     for (let index = 1; index <= 25; index++) {
         try {
-            var result = await requestImagePromise("GET", `${baseUrl}images/${baseId}${index}`);
+            var result = await requestImagePromise("GET", `${baseUrl}${baseId}${index}`);
             document.getElementById(`${baseId}${index}`).src = result;
         } catch (e) {
             console.error(e);
@@ -65,23 +65,17 @@ function nonBlockingRequest(){
     var counter = 0;
 
     for (let index = 1; index <= 25; index++) {
-        try {
-
-            requestImagePromise("GET", `${baseUrl}images/${baseId}${index}`).then((result)=>{
-                document.getElementById(`${baseId}${25+index}`).src = result;
-                
-                counter++;
-                if(counter == 25){
-                    const endTime = Date.now();
-                    const duration = (endTime - startTime) / 1000;
-                    console.log(`Duracion: ${duration} segundos`);
-                    alert(`Duracion: ${duration} segundos`);
-                }
-            });
-
-        } catch (e) {
-            console.error(e);
-        }
+        requestImagePromise("GET", `${baseUrl}${baseId}${index}`).then((result)=>{
+            document.getElementById(`${baseId}${25+index}`).src = result;
+            
+            counter++;
+            if(counter == 25){
+                const endTime = Date.now();
+                const duration = (endTime - startTime) / 1000;
+                console.log(`Duracion: ${duration} segundos`);
+                alert(`Duracion: ${duration} segundos`);
+            }
+        });
         
     }
 }

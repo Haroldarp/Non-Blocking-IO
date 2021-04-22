@@ -29,7 +29,7 @@ public class ImagesController {
 
         long startTime = System.currentTimeMillis();
 
-        CompletableFuture<byte[]> bytes = imageService.getImageAsycn(imageName);
+        CompletableFuture<byte[]> bytes = imageService.getImageAsync(imageName);
         CompletableFuture<String> asyncDelay1 = delayService.asyncDelay(3);
         CompletableFuture<String> asyncDelay2 = delayService.asyncDelay(1);
         CompletableFuture<String> asyncDelay3 = delayService.asyncDelay(2);
@@ -38,7 +38,7 @@ public class ImagesController {
         System.out.println("asyncDelay2 -> "+asyncDelay2.get());
         System.out.println("asyncDelay3 -> "+asyncDelay3.get());
 
-        long duration = (System.currentTimeMillis() - startTime) / 1000;
+        Double duration = (System.currentTimeMillis() - startTime) / 1000.0;
         System.out.println("Duracion: " + duration + " secs");
 
 
@@ -65,7 +65,7 @@ public class ImagesController {
         String delay3 = delayService.delay(3);
         System.out.println("Delay3 -> "+delay3);
 
-        long duration = (System.currentTimeMillis() - startTime) / 1000;
+        Double duration = (System.currentTimeMillis() - startTime) / 1000.0;
         System.out.println("Duracion: " + duration + " secs");
 
 
