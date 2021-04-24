@@ -11,6 +11,7 @@ import java.util.concurrent.Executor;
 @EnableAsync
 public class MainConfiguration {
 
+    //Ejemplo de como se podria configurar las llamada asincronas
     @Bean(name = "asyncExecutor")
     public Executor asyncExecutor()
     {

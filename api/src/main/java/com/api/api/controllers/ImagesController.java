@@ -22,6 +22,7 @@ public class ImagesController {
     private ImageService imageService;
 
 
+    //http://localhost:8080/images/async/{imageName}
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/async/{imageName}", method = RequestMethod.GET,
             produces = MediaType.IMAGE_JPEG_VALUE)
@@ -30,9 +31,9 @@ public class ImagesController {
         long startTime = System.currentTimeMillis();
 
         CompletableFuture<byte[]> bytes = imageService.getImageAsync(imageName);
-        CompletableFuture<String> asyncDelay1 = delayService.asyncDelay(3);
-        CompletableFuture<String> asyncDelay2 = delayService.asyncDelay(1);
-        CompletableFuture<String> asyncDelay3 = delayService.asyncDelay(2);
+        CompletableFuture<String> asyncDelay1 = delayService.asyncDelay(2);
+        CompletableFuture<String> asyncDelay2 = delayService.asyncDelay(4);
+        CompletableFuture<String> asyncDelay3 = delayService.asyncDelay(1);
 
         System.out.println("asyncDelay1 -> "+asyncDelay1.get());
         System.out.println("asyncDelay2 -> "+asyncDelay2.get());
@@ -48,6 +49,7 @@ public class ImagesController {
                 .body(bytes.get());
     }
 
+    //http://localhost:8080/images/{imageName}
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/{imageName}", method = RequestMethod.GET,
             produces = MediaType.IMAGE_JPEG_VALUE)
@@ -56,13 +58,13 @@ public class ImagesController {
         long startTime = System.currentTimeMillis();
 
         byte[] bytes = imageService.getImage(imageName);
-        String delay1 = delayService.delay(1);
+        String delay1 = delayService.delay(2);
         System.out.println("Delay1 -> "+delay1);
 
-        String delay2 = delayService.delay(2);
+        String delay2 = delayService.delay(4);
         System.out.println("Delay2 -> "+delay2);
 
-        String delay3 = delayService.delay(3);
+        String delay3 = delayService.delay(1);
         System.out.println("Delay3 -> "+delay3);
 
         Double duration = (System.currentTimeMillis() - startTime) / 1000.0;

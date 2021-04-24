@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:8080/images/async/';
+const baseUrl = 'http://localhost:8080/images/';
 
 function requestImagePromise(method, url){
     return new Promise(function (resolve, reject) {

@@ -11,13 +11,13 @@ public class DelayService {
     @Async
     public CompletableFuture<String> asyncDelay(int seconds) throws InterruptedException
     {
-        Thread.sleep(seconds*1000);
+        Thread.sleep(seconds*100);
         return CompletableFuture.completedFuture("Done");
     }
 
     public String delay(int seconds) throws InterruptedException
     {
-        Thread.sleep(seconds*1000);
+        Thread.sleep(seconds*100);
         return "Done";
     }
 
